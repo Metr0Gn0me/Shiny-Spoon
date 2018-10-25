@@ -8,22 +8,22 @@ app = Flask(Cat)
 
 @app.route('/')
 def index():
-    return jsonify(response='pinging from the cat feeder!')
+    return jsonify(response='cat feeder')
 
 @app.route('/open')
 def openRouteWithDefaultTime():
     time = 0.5
     openFeeder(time)
-    return jsonify(response='feeding the kitty '+str(time))
+    return jsonify(response='feeding the cat '+str(time))
 
 @app.route('/open/<time>')
 def openRoute(time):
     time = float(time)
     openFeeder(time)
-    return jsonify(response='feeding the kitty '+str(time))
+    return jsonify(response='feeding the cat '+str(time))
 
 def openFeeder(wait):
-    print('Opening cat feeder for ', wait)
+    print('Opening for ', wait)
     IO.setwarnings(False)
     IO.setmode (IO.BCM)
     IO.setup(pinOut,IO.OUT)
@@ -37,4 +37,4 @@ def openFeeder(wait):
     pwm.stop(2.5)
 
 if Cat == '__main__':
-    app.run(host='192.168.1.184', debug=True)
+    app.run(host='169.254.51.183', debug=True)
